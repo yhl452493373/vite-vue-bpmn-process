@@ -3,7 +3,6 @@ import Toolbar from '@/components/Toolbar'
 import Palette from '@/components/Palette'
 import Designer from '@/components/Designer'
 import Panel from '@/components/Panel'
-import Setting from '@/components/Setting'
 import ContextMenu from '@/components/ContextMenu/index.vue'
 import { EditorSettings } from 'types/editor/settings'
 import { defaultSettings } from '@/config'
@@ -11,7 +10,7 @@ import { defaultSettings } from '@/config'
 import hljs from 'highlight.js/lib/core'
 import xml from 'highlight.js/lib/languages/xml'
 import json from 'highlight.js/lib/languages/json'
-import { NConfigProvider, NDialogProvider, NMessageProvider } from 'naive-ui'
+import { NConfigProvider, NDialogProvider, NMessageProvider, zhCN, dateZhCN } from 'naive-ui'
 
 hljs.registerLanguage('xml', xml)
 hljs.registerLanguage('json', json)
@@ -46,6 +45,8 @@ const App = defineComponent({
     return () => (
       <NConfigProvider
         abstract
+        locale={zhCN}
+        dateLocale={dateZhCN}
         componentOptions={{ DynamicInput: { buttonSize: 'small' } }}
         hljs={hljs}
       >
@@ -62,7 +63,6 @@ const App = defineComponent({
                   <div class="camunda-penal" id="camunda-penal"></div>
                 )}
               </div>
-              <Setting v-model={[editorSettings.value, 'settings']}></Setting>
               <ContextMenu></ContextMenu>
             </NMessageProvider>
           </div>

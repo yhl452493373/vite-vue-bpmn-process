@@ -5,10 +5,10 @@
         <lucide-icon name="Shuffle" />
       </collapse-title>
     </template>
-    <edit-item label="Before" :label-width="120">
+    <edit-item label="异步前" :label-width="120">
       <n-switch v-model:value="acBefore" @update:value="updateElementACBefore" />
     </edit-item>
-    <edit-item label="After" :label-width="120">
+    <edit-item label="异步后" :label-width="120">
       <n-switch v-model:value="acAfter" @update:value="updateElementACAfter" />
     </edit-item>
     <edit-item v-if="showExclusive" label="Exclusive" :label-width="120">

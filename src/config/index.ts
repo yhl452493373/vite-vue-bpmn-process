@@ -3,7 +3,7 @@ import { EditorSettings } from 'types/editor/settings'
 export const defaultSettings: EditorSettings = {
   processId: `Process_${new Date().getTime()}`,
   processName: `业务流程`,
-  processEngine: 'camunda',
+  processEngine: 'activiti',
   paletteMode: 'enhancement',
   penalMode: 'custom',
   contextPadMode: 'enhancement',
@@ -11,10 +11,10 @@ export const defaultSettings: EditorSettings = {
   bg: 'grid-image',
   toolbar: true,
   miniMap: true,
-  contextmenu: true,
+  contextmenu: false,
   customContextmenu: true,
   otherModule: true,
-  templateChooser: true,
+  templateChooser: false,
   useLint: false,
   customTheme: {}
 }

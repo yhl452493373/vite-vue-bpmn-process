@@ -144,20 +144,20 @@
       })
 
       const listenerEventTypeOptions = ref<Record<string, string>[]>([
-        { label: 'Start', value: 'start' },
-        { label: 'End', value: 'end' },
-        { label: 'Take', value: 'take' }
+        { label: '开始', value: 'start' },
+        { label: '结束', value: 'end' },
+        { label: '拿取', value: 'take' }
       ])
       const listenerTypeOptions = ref<Record<string, string>[]>([
-        { label: 'Java Class', value: 'class' },
-        { label: 'Expression', value: 'expression' },
-        { label: 'DelegateExpression', value: 'delegateExpression' },
-        { label: 'Script', value: 'script' }
+        { label: 'Java类', value: 'class' },
+        { label: '条件表达式', value: 'expression' },
+        { label: '代理条件表达式', value: 'delegateExpression' },
+        { label: '脚本', value: 'script' }
       ])
       const scriptTypeOptions = ref<Record<string, string>[]>([
-        { label: 'External Resource', value: 'external' },
-        { label: 'Inline Script', value: 'inline' },
-        { label: 'None', value: 'none' }
+        { label: '外链脚本', value: 'external' },
+        { label: '内联脚本', value: 'inline' },
+        { label: '无', value: 'none' }
       ])
       const formRules: FormRules = {
         event: { required: true, trigger: ['blur', 'change'], message: '事件类型不能为空' },
@@ -165,8 +165,8 @@
       }
       const columns: DataTableColumns<ExecutionListenerForm> = [
         { title: '序号', key: 'index', render: (a, index) => index + 1, width: 50 },
-        { title: 'EventType', key: 'event', ellipsis: { tooltip: true } },
-        { title: 'ListenerType', key: 'type', ellipsis: { tooltip: true } },
+        { title: '事件类型', key: 'event', ellipsis: { tooltip: true } },
+        { title: '监听器类型', key: 'type', ellipsis: { tooltip: true } },
         {
           title: '操作',
           key: 'operation',

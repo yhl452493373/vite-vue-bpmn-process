@@ -20,3 +20,5 @@ declare interface ConditionalForm {
   body?: string
   resource?: string
 }
+
+declare interface FormSupportedForm extends BpmnForm {}

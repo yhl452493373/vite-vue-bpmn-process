@@ -25,7 +25,9 @@ import ElementExtensionProperties from './components/ElementExtensionProperties.
 import ElementAsyncContinuations from './components/ElementAsyncContinuations.vue'
 import ElementJobExecution from './components/ElementJobExecution.vue'
 import ElementStartInitiator from './components/ElementStartInitiator.vue'
+import ElementUserGroup from './components/ElementUserGroup.vue'
 import { isCanbeConditional } from '@/bo-utils/conditionUtil'
+import { isUserTask } from '@/bo-utils/userGroupUtil'
 import { customTranslate } from '@/additional-modules/Translate'
 
 const Panel = defineComponent({
@@ -47,6 +49,7 @@ const Panel = defineComponent({
       renderComponents.splice(0, renderComponents.length)
       renderComponents.push(ElementGenerations)
       renderComponents.push(ElementDocumentations)
+      isUserTask(element) && renderComponents.push(ElementUserGroup)
       isCanbeConditional(element) && renderComponents.push(ElementConditional)
       isJobExecutable(element) && renderComponents.push(ElementJobExecution)
       renderComponents.push(ElementExtensionProperties)

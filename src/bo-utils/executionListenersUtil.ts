@@ -93,11 +93,11 @@ export function getDefaultEvent(element: Base) {
 
 export function getExecutionListenerTypes(element: Base) {
   if (is(element, 'bpmn:SequenceFlow')) {
-    return [{ label: 'Take', value: 'take' }]
+    return [{ label: '拿取', value: 'take' }]
   }
   return [
-    { label: 'Start', value: 'start' },
-    { label: 'End', value: 'end' }
+    { label: '开始', value: 'start' },
+    { label: '结束', value: 'end' }
   ]
 }
 

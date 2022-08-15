@@ -334,7 +334,6 @@
       "extends": [
         "bpmn:ServiceTask",
         "bpmn:BusinessRuleTask",
-        "bpmn:ScriptTask",
         "bpmn:SendTask",
         "bpmn:MessageEventDefinition"
       ],

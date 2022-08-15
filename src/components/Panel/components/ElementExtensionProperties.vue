@@ -61,14 +61,14 @@
         columns: [
           { title: '序号', key: 'index', render: (a, index) => index + 1, width: 50 },
           {
-            title: 'Name',
+            title: '属性名称',
             key: 'name',
             ellipsis: {
               tooltip: true
             }
           },
           {
-            title: 'Value',
+            title: '属性值',
             key: 'value',
             ellipsis: {
               tooltip: true

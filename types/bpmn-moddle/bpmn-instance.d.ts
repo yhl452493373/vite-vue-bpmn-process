@@ -12,6 +12,12 @@ declare interface BpmnField {
   htmlVar?: string
 }
 
+declare interface BpmnForm {
+  id: string
+  type: string
+  name: string
+}
+
 declare interface BpmnExtensionElements {
   values: any[]
 }

@@ -5,7 +5,7 @@
         <lucide-icon name="FileText" />
       </collapse-title>
     </template>
-    <edit-item label="Documentation" :label-width="120">
+    <edit-item label="文档内容" :label-width="120">
       <n-input v-model:value="elementDoc" type="textarea" @change="updateElementDoc" />
     </edit-item>
   </n-collapse-item>

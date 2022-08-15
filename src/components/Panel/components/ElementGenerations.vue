@@ -6,20 +6,20 @@
       </collapse-title>
     </template>
 
-    <edit-item label="ID">
+    <edit-item label="唯一标识">
       <n-input v-model:value="elementId" maxlength="32" @change="updateElementId" />
     </edit-item>
 
-    <edit-item label="Name">
+    <edit-item label="名称">
       <n-input v-model:value="elementName" maxlength="20" @change="updateElementName" />
     </edit-item>
 
     <template v-if="isProcess">
-      <edit-item key="version" label="Version">
+      <edit-item key="version" label="版本">
         <n-input v-model:value="elementVersion" maxlength="20" @change="updateElementVersion" />
       </edit-item>
 
-      <edit-item key="executable" label="Executable">
+      <edit-item key="executable" label="可执行">
         <n-switch v-model:value="elementExecutable" @update:value="updateElementExecutable" />
       </edit-item>
     </template>

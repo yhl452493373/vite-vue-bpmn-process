@@ -11,7 +11,6 @@ export function createAction(
 ) {
   function createListener(event) {
     const shape = elementFactory.createShape(assign({ type: type }, options))
-
     if (options) {
       !shape.businessObject.di && (shape.businessObject.di = {})
       shape.businessObject.di.isExpanded = (options as { [key: string]: any }).isExpanded
