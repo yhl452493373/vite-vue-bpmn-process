@@ -15,6 +15,13 @@ export function getCandidateUsers(element: Base): string[] {
   return candidateUsers?.split(',') || null
 }
 
+// 根据元素获取 candidateGroups 属性
+export function getCandidateGroups(element: Base): string[] {
+  let candidateGroups = element?.businessObject.candidateGroups
+  candidateGroups = candidateGroups === '' ? null : candidateGroups
+  return candidateGroups?.split(',') || null
+}
+
 // 根据输入内容设置 assignee 属性
 export function setAssignee(element: Base, value: string): void {
   const store = modelerStore()
@@ -35,6 +42,18 @@ export function setCandidateUsers(element: Base, value: string[] | string): void
 
   if (typeof value !== 'string') value = value.join(',')
   modeling?.updateProperties(element, { [`${prefix}:candidateUsers`]: value })
+}
+
+// 根据输入内容设置 candidateGroups 属性
+export function setCandidateGroups(element: Base, value: string[] | string): void {
+  const store = modelerStore()
+  const editor = editorStore()
+
+  const modeling = store.getModeling
+  const prefix = editor.getProcessEngine
+
+  if (typeof value !== 'string') value = value.join(',')
+  modeling?.updateProperties(element, { [`${prefix}:candidateGroups`]: value })
 }
 
 export function isUserTask(element: Base): boolean {
