@@ -7,6 +7,7 @@ import ContextMenu from '@/components/ContextMenu/index.vue'
 import { EditorSettings } from 'types/editor/settings'
 import { defaultSettings } from '@/config'
 
+import { Base64 } from 'js-base64'
 import hljs from 'highlight.js/lib/core'
 import xml from 'highlight.js/lib/languages/xml'
 import json from 'highlight.js/lib/languages/json'
@@ -19,7 +20,12 @@ const App = defineComponent({
   setup() {
     const editorSettings = ref<EditorSettings>({ ...defaultSettings })
 
-    const processXml = ref<string | undefined>(undefined)
+    const processId = ref<string>(sessionStorage.getItem('processId') || '')
+    const processName = ref<string>(sessionStorage.getItem('processName') || '')
+    const processDescription = ref<string>(sessionStorage.getItem('processDescription') || '')
+    const processContent = ref<string>(sessionStorage.getItem('processContent') || '')
+
+    const processXml = ref<string>(Base64.decode(processContent.value))
 
     const customPalette = computed<boolean>(() => editorSettings.value.paletteMode === 'custom')
     const customPenal = computed<boolean>(() => editorSettings.value.penalMode === 'custom')
@@ -53,10 +59,16 @@ const App = defineComponent({
         <NDialogProvider>
           <div class={computedClasses.value} id="designer-container">
             <NMessageProvider>
-              {showToolbar.value && <Toolbar></Toolbar>}
+              {showToolbar.value && (
+                <Toolbar
+                  v-model:processId={processId.value}
+                  v-model:processName={processName.value}
+                  v-model:processDescription={processDescription.value}
+                ></Toolbar>
+              )}
               <div class="main-content">
                 {customPalette.value && <Palette></Palette>}
-                <Designer v-model={[processXml.value, 'xml']}></Designer>
+                <Designer v-model:xml={processXml.value}></Designer>
                 {customPenal.value ? (
                   <Panel></Panel>
                 ) : (

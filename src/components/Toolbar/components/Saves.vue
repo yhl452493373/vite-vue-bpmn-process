@@ -26,12 +26,27 @@
 
 <script lang="ts">
   import modeler from '@/store/modeler'
-  import { defineComponent } from 'vue'
+  import { defineComponent, PropType, ref } from 'vue'
   import { useMessage } from 'naive-ui'
+  import axios from 'axios'
 
   export default defineComponent({
     name: 'SavesPanel',
-    setup: function () {
+    props: {
+      processId: {
+        type: String as PropType<string>,
+        default: ''
+      },
+      processName: {
+        type: String as PropType<string>,
+        default: ''
+      },
+      processDescription: {
+        type: String as PropType<string>,
+        default: ''
+      }
+    },
+    setup: function (props) {
       const message = useMessage()
       return {
         success(msg, onAfterLeave?) {
@@ -50,7 +65,11 @@
     },
     data: function () {
       return {
-        processInfo: { name: '', description: '' },
+        processInfo: {
+          id: this.processId,
+          name: this.processName,
+          description: this.processDescription
+        },
         rules: {
           name: { required: true, message: '流程名称不能为空', trigger: ['blur', 'change'] }
         },
@@ -73,14 +92,37 @@
           }
 
           const { xml } = await modeler.saveXML({ format: true, preamble: true })
-          console.log(this.processInfo)
-          console.log(xml)
-          setTimeout(() => {
+          const { svg } = await modeler.saveSVG()
+          const { id, name, description } = this.processInfo
+
+          const url =
+            ref(id).value === ''
+              ? '/cemis/lcsj/process-resources/insert'
+              : '/cemis/lcsj/process-resources/update'
+
+          const method = ref(id).value === '' ? 'post' : 'put'
+
+          const formData = new FormData()
+
+          formData.append('id', id)
+          formData.append('name', name)
+          formData.append('description', description)
+          formData.append('content', xml === undefined ? '' : xml)
+          formData.append('contentSvg', svg === undefined ? '' : svg)
+
+          axios[method](url, formData).then((res) => {
             this.saving = false
-            this.success('保存成功', () => {
-              this.modelVisible = false
-            })
-          }, 2000)
+            if (res.data.status === 'success') {
+              this.success('保存成功', () => {
+                this.modelVisible = false
+                if (parent.hasOwnProperty('closeDesignerDialog')) {
+                  parent['closeDesignerDialog']()
+                }
+              })
+            } else {
+              this.error('保存失败')
+            }
+          })
         } catch (e) {
           window.__messageBox.error((e as Error).message || (e as string))
         }

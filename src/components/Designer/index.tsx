@@ -30,7 +30,7 @@ const Designer = defineComponent({
           await nextTick()
           initModeler(designer, modelerModules, emit)
           if (!oldValue || value.processEngine !== oldValue!.processEngine) {
-            await createNewDiagram()
+            await createNewDiagram(xml.value)
           } else {
             await createNewDiagram(xml.value, editorSettings.value)
           }
