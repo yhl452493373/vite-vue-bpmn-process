@@ -42,7 +42,7 @@
   </n-collapse-item>
 </template>
 <script lang="ts">
-  import { defineComponent, Ref, ref, UnwrapRef } from 'vue'
+  import { defineComponent } from 'vue'
   import { mapState } from 'pinia'
   import modelerStore from '@/store/modeler'
   import { Base } from 'diagram-js/lib/model'
