@@ -23,7 +23,7 @@
       v-model:show="modelVisible"
       preset="dialog"
       title="添加扩展属性"
-      :style="{ width: '640px' }"
+      :style="{ width: '500px' }"
     >
       <n-form
         ref="formRef"

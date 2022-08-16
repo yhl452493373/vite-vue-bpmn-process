@@ -183,5 +183,12 @@ export default {
   'Tasklist Configuration': 'Tasklist配置',
   Startable: '启动',
   'Specify more than one group as a comma separated list.': '指定多个组作为逗号分隔的列表。',
-  'Execution listeners': '执行监听器'
+  'Execution listeners': '执行监听器',
+  'Data Object Reference': '数据对象参考',
+  'Data Store Reference': '数据储存参考',
+  'Empty Pool': '空白池',
+  Participant: '参与者',
+  Collaboration: '协作',
+  TextAnnotation: '注释',
+  SequenceFlow: '流转路径'
 }
