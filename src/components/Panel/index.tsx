@@ -1,4 +1,4 @@
-import { defineComponent, Component, markRaw, onMounted, ref } from 'vue'
+import { defineComponent, Component, markRaw, onMounted, ref, PropType, toRefs } from 'vue'
 import { NCollapse } from 'naive-ui'
 import { Base, Connection, Label, Shape } from 'diagram-js/lib/model'
 import { Translate } from 'diagram-js/lib/i18n/translate'
@@ -32,7 +32,13 @@ import { customTranslate } from '@/additional-modules/Translate'
 
 const Panel = defineComponent({
   name: 'Panel',
-  setup() {
+  props: {
+    apiContextPath: {
+      type: String as PropType<string>,
+      default: undefined
+    }
+  },
+  setup(props) {
     const modeler = modelerStore()
     const panel = ref<HTMLDivElement | null>(null)
     const currentElementId = ref<string | undefined>(undefined)
@@ -115,6 +121,8 @@ const Panel = defineComponent({
 
     onMounted(() => !currentElementId.value && setCurrentElement())
 
+    const { apiContextPath } = toRefs(props)
+
     return () => (
       <div ref={panel} class="panel">
         <div class="panel-header">
@@ -124,7 +132,7 @@ const Panel = defineComponent({
         </div>
         <NCollapse arrow-placement="right">
           {renderComponents.map((component) => (
-            <component is={component}></component>
+            <component is={component} v-model:apiContextPath={apiContextPath.value}></component>
           ))}
         </NCollapse>
       </div>

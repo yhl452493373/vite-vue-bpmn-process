@@ -71,7 +71,7 @@ const App = defineComponent({
                 {customPalette.value && <Palette></Palette>}
                 <Designer v-model:xml={processXml.value}></Designer>
                 {customPenal.value ? (
-                  <Panel></Panel>
+                  <Panel v-model:apiContextPath={editorSettings.value.apiContextPath}></Panel>
                 ) : (
                   <div class="camunda-penal" id="camunda-penal"></div>
                 )}

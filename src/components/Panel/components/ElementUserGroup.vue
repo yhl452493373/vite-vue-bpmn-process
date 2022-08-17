@@ -42,8 +42,9 @@
   </n-collapse-item>
 </template>
 <script lang="ts">
-  import { defineComponent } from 'vue'
+import { defineComponent, PropType } from "vue";
   import { mapState } from 'pinia'
+  import axios from 'axios'
   import modelerStore from '@/store/modeler'
   import { Base } from 'diagram-js/lib/model'
   import EventEmitter from '@/utils/EventEmitter'
@@ -58,6 +59,12 @@
 
   export default defineComponent({
     name: 'ElementUserGroup',
+    props: {
+      apiContextPath: {
+        type: String as PropType<string>,
+        default: undefined
+      }
+    },
     data() {
       const userId: unknown = null
       const userOptions: unknown = []
@@ -116,34 +123,50 @@
       },
       async loadUserOptions() {
         return new Promise((resolve) => {
-          setTimeout(() => {
-            resolve([
-              { label: '系统管理员', value: 'sysadmin' },
-              { label: '张三', value: 'zs' },
-              { label: '李四', value: 'ls' }
-            ])
-          }, 1000)
+          axios.get(`${this.apiContextPath}/lcsj/process-resource/list-user`).then((res) => {
+            if (res.data.status === 'success') {
+              const data = res.data.data
+              const userDatum: { label: string; value: string }[] = []
+              data.forEach((user) => {
+                userDatum.push({ label: user.name, value: user.id })
+              })
+              resolve(userDatum)
+            } else {
+              this.userOptionsLoading = false
+            }
+          })
         })
       },
       async loadCandidateUserOptions() {
         return new Promise((resolve) => {
-          setTimeout(() => {
-            resolve([
-              { label: '王五', value: 'ww' },
-              { label: '周六', value: 'zl' }
-            ])
-          }, 1000)
+          axios.get(`${this.apiContextPath}/lcsj/process-resource/list-user`).then((res) => {
+            if (res.data.status === 'success') {
+              const data = res.data.data
+              const userDatum: { label: string; value: string }[] = []
+              data.forEach((user) => {
+                userDatum.push({ label: user.name, value: user.id })
+              })
+              resolve(userDatum)
+            } else {
+              this.candidateUserOptionsLoading = false
+            }
+          })
         })
       },
       async loadCandidateGroupsOptions() {
         return new Promise((resolve) => {
-          setTimeout(() => {
-            resolve([
-              { label: '老板', value: 'lb' },
-              { label: '秘书', value: 'ms' },
-              { label: '小秘', value: 'xm' }
-            ])
-          }, 1000)
+          axios.get(`${this.apiContextPath}/lcsj/process-resource/list-role`).then((res) => {
+            if (res.data.status === 'success') {
+              const data = res.data.data
+              const roleDatum: { label: string; value: string }[] = []
+              data.forEach((role) => {
+                roleDatum.push({ label: role.name, value: role.id })
+              })
+              resolve(roleDatum)
+            } else {
+              this.candidateGroupsOptionsLoading = false
+            }
+          })
         })
       }
     }
