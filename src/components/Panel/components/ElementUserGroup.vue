@@ -123,7 +123,7 @@ import { defineComponent, PropType } from "vue";
       },
       async loadUserOptions() {
         return new Promise((resolve) => {
-          axios.get(`${this.apiContextPath}/lcsj/process-resource/list-user`).then((res) => {
+          axios.get(`${this.apiContextPath}/lc/process-resource/list-user`).then((res) => {
             if (res.data.status === 'success') {
               const data = res.data.data
               const userDatum: { label: string; value: string }[] = []
@@ -139,7 +139,7 @@ import { defineComponent, PropType } from "vue";
       },
       async loadCandidateUserOptions() {
         return new Promise((resolve) => {
-          axios.get(`${this.apiContextPath}/lcsj/process-resource/list-user`).then((res) => {
+          axios.get(`${this.apiContextPath}/lc/process-resource/list-user`).then((res) => {
             if (res.data.status === 'success') {
               const data = res.data.data
               const userDatum: { label: string; value: string }[] = []
@@ -155,7 +155,7 @@ import { defineComponent, PropType } from "vue";
       },
       async loadCandidateGroupsOptions() {
         return new Promise((resolve) => {
-          axios.get(`${this.apiContextPath}/lcsj/process-resource/list-role`).then((res) => {
+          axios.get(`${this.apiContextPath}/lc/process-resource/list-role`).then((res) => {
             if (res.data.status === 'success') {
               const data = res.data.data
               const roleDatum: { label: string; value: string }[] = []

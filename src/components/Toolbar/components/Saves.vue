@@ -102,8 +102,8 @@
 
           const url =
             ref(id).value === ''
-              ? `${apiContextPath}/lcsj/process-resources/insert`
-              : `${apiContextPath}/lcsj/process-resources/update`
+              ? `${apiContextPath}/lc/process-resources/insert`
+              : `${apiContextPath}/lc/process-resources/update`
 
           const method = ref(id).value === '' ? 'post' : 'put'
 
