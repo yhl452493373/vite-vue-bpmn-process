@@ -253,7 +253,6 @@
 
       const openListenerModel = async (index: number, listenerData?: ExecutionListenerForm) => {
         activeIndex = index
-        console.log(JSON.stringify(listenerData))
         listenerData && (newListener.value = JSON.parse(JSON.stringify(listenerData)))
         updateListenerType(listenerData?.type || 'class')
         modelVisible.value = true

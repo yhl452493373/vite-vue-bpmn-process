@@ -125,7 +125,6 @@ function updateListenerProperty(
   listenerClass && updateProperty('class', listenerClass)
   expression && updateProperty('expression', expression)
   delegateExpression && updateProperty('delegateExpression', delegateExpression)
-  console.log(props)
 
   if (script) {
     const bpmnScript = createScript(script)

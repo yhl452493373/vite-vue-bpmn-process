@@ -113,7 +113,6 @@ export function setConditionExpressionValue(element: Base, body: string | undefi
 export function getConditionScriptTypeValue(element: Base): string | undefined {
   const prefix = editor().getProcessEngine
   const conditionExpression = getConditionExpression(element)!
-  console.log(conditionExpression)
   if (conditionExpression.get('body') !== undefined) return 'inline'
   if (conditionExpression.get(`${prefix}:resource`) !== undefined) return 'external'
   return 'none'
