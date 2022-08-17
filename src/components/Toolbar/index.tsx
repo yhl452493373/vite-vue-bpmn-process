@@ -23,11 +23,15 @@ const Toolbar = defineComponent({
     processDescription: {
       type: String as PropType<string>,
       default: undefined
+    },
+    apiContextPath: {
+      type: String as PropType<string>,
+      default: undefined
     }
   },
   emits: ['update:processId', 'update:processName', 'update:processDescription'],
   setup(props) {
-    const { processId, processName, processDescription } = toRefs(props)
+    const { processId, processName, processDescription, apiContextPath } = toRefs(props)
 
     return () => (
       <div class="toolbar">
@@ -39,6 +43,7 @@ const Toolbar = defineComponent({
             v-model:processId={processId.value}
             v-model:processName={processName.value}
             v-model:processDescription={processDescription.value}
+            v-model:apiContextPath={apiContextPath.value}
           ></Saves>
         </NButtonGroup>
         <Aligns></Aligns>

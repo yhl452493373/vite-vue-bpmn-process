@@ -64,6 +64,7 @@ const App = defineComponent({
                   v-model:processId={processId.value}
                   v-model:processName={processName.value}
                   v-model:processDescription={processDescription.value}
+                  v-model:apiContextPath={editorSettings.value.apiContextPath}
                 ></Toolbar>
               )}
               <div class="main-content">

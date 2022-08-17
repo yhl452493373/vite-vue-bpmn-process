@@ -1,6 +1,7 @@
 import { EditorSettings } from 'types/editor/settings'
 
 export const defaultSettings: EditorSettings = {
+  apiContextPath: '/cemis',
   processId: `Process_${new Date().getTime()}`,
   processName: `业务流程`,
   processEngine: 'activiti',

@@ -44,6 +44,10 @@
       processDescription: {
         type: String as PropType<string>,
         default: ''
+      },
+      apiContextPath: {
+        type: String as PropType<string>,
+        default: undefined
       }
     },
     setup: function (props) {
@@ -68,7 +72,8 @@
         processInfo: {
           id: this.processId,
           name: this.processName,
-          description: this.processDescription
+          description: this.processDescription,
+          apiContextPath: this.apiContextPath
         },
         rules: {
           name: { required: true, message: '流程名称不能为空', trigger: ['blur', 'change'] }
@@ -93,12 +98,12 @@
 
           const { xml } = await modeler.saveXML({ format: true, preamble: true })
           const { svg } = await modeler.saveSVG()
-          const { id, name, description } = this.processInfo
+          const { id, name, description, apiContextPath } = this.processInfo
 
           const url =
             ref(id).value === ''
-              ? '/cemis/lcsj/process-resources/insert'
-              : '/cemis/lcsj/process-resources/update'
+              ? `${apiContextPath}/lcsj/process-resources/insert`
+              : `${apiContextPath}/lcsj/process-resources/update`
 
           const method = ref(id).value === '' ? 'post' : 'put'
 
